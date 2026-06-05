@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>阪大 成人心臓移植プロトコール</title>
+<style>
+  :root {
+    --sidebar-width: 280px;
+    --header-height: 56px;
+    --accent: #0f766e;
+    --accent-light: #e2f3ef;
+    --bg: #f6f8f8;
+    --text: #15201e;
+    --border: #d8e1df;
+    --table-header: #0b5d54;
+    --warning: #c0392b;
+    --note: #7f6000;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Hiragino Sans', 'Meiryo', 'Yu Gothic', sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; -webkit-text-size-adjust: 100%; }
+
+  /* ===== TOP BAR ===== */
+  #topbar {
+    position: fixed; top: 0; left: 0; right: 0; height: var(--header-height);
+    background: var(--table-header); color: #fff; display: flex; align-items: center;
+    padding: 0 16px; z-index: 200; gap: 12px; box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  }
+  #topbar .brand { font-size: 15px; font-weight: 700; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #menu-toggle { background: none; border: none; color: #fff; cursor: pointer; padding: 6px; font-size: 22px; line-height: 1; flex-shrink: 0; }
+  @media (max-width: 480px) {
+    #topbar .brand { flex: 0 0 auto; }
+    #topbar .brand-text { display: none; }
+    #search-wrap { flex: 1 1 auto; min-width: 0; }
+    #search-input { flex: 1 1 auto; width: auto; min-width: 0; }
+    #search-count { min-width: 0; padding: 0 2px; }
+  }
+
+  /* Search bar */
+  #search-wrap { display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,.15); border-radius: 6px; padding: 2px 8px; }
+  #search-input { background: none; border: none; color: #fff; font-size: 13px; width: 140px; outline: none; }
+  #search-input::placeholder { color: rgba(255,255,255,.8); }
+  #search-nav { display: flex; gap: 4px; }
+  #search-nav button { background: none; border: none; color: #fff; cursor: pointer; font-size: 14px; padding: 6px; min-width: 30px; opacity: .85; }
+  #search-nav button:hover { opacity: 1; }
+  #search-count { font-size: 11px; color: rgba(255,255,255,.85); white-space: nowrap; min-width: 40px; }
+  mark.search-hl { background: #ffe066; color: #000; border-radius: 2px; }
+  mark.search-hl.current { background: #ff7700; color: #fff; }
+
+  /* ===== SIDEBAR ===== */
+  #sidebar {
+    position: fixed; top: var(--header-height); left: 0; bottom: 0;
+    width: var(--sidebar-width); background: #fff; border-right: 1px solid var(--border);
+    overflow-y: auto; z-index: 150; transition: transform .25s ease;
+    padding: 12px 0 40px;
+  }
+  #sidebar.hidden { transform: translateX(calc(-1 * var(--sidebar-width))); }
+  #overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.35); z-index: 140; }
+  #overlay.visible { display: block; }
+
+  .sidebar-section-label {
+    font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+    color: #6b6b6b; padding: 14px 16px 4px; margin-top: 4px;
+  }
+  #sidebar a {
+    display: block; padding: 9px 16px 9px 20px; color: #333; text-decoration: none;
+    font-size: 13px; border-left: 3px solid transparent; transition: all .15s;
+  }
+  #sidebar a.sub { padding-left: 34px; font-size: 12.5px; color: #555; }
+  #sidebar a:hover, #sidebar a.active { color: var(--accent); background: var(--accent-light); border-left-color: var(--accent); }
+  #sidebar a.star { font-weight: 700; }
+  #sidebar .home-link { margin: 4px 16px 10px; padding: 8px 12px; background: var(--accent-light); border-radius: 6px; font-size: 12.5px; color: var(--accent); font-weight: 600; border-left: none; }
+  #sidebar .home-link:hover { background: #d2ebe5; }
+
+  /* ===== MAIN ===== */
+  #main {
+    margin-left: var(--sidebar-width); margin-top: var(--header-height);
+    padding: 32px 36px 80px; max-width: 940px; transition: margin .25s ease;
+  }
+  #main.full { margin-left: 0; }
+
+  /* Headings */
+  h1.page-title { font-size: 22px; font-weight: 800; color: var(--table-header); margin-bottom: 4px; line-height: 1.4; }
+  .byline { font-size: 13px; color: #444; margin: 6px 0 2px; }
+  .updated { font-size: 12px; color: #6b6b6b; margin-bottom: 20px; }
+  h2 { font-size: 19px; font-weight: 700; color: var(--table-header); margin: 40px 0 14px;
+       border-bottom: 2px solid var(--accent); padding-bottom: 6px; scroll-margin-top: calc(var(--header-height) + 8px); }
+  h2 .num { display: inline-block; background: var(--accent); color: #fff; font-size: 13px; font-weight: 700; border-radius: 6px; padding: 1px 9px; margin-right: 8px; vertical-align: middle; }
+  h3 { font-size: 15.5px; font-weight: 700; color: #0c4a43; margin: 22px 0 8px; scroll-margin-top: calc(var(--header-height) + 8px); }
+  h4 { font-size: 14px; font-weight: 700; color: #1a3a36; margin: 14px 0 6px; }
+
+  /* Text */
+  p { margin: 8px 0; }
+  ul, ol { padding-left: 22px; margin: 8px 0; }
+  li { margin: 4px 0; }
+  li ul, li ol { margin: 4px 0; }
+  strong { color: #15201e; font-weight: 700; }
+  em { font-style: normal; color: var(--warning); font-weight: 600; }
+  a.xref { color: var(--accent); text-decoration: none; border-bottom: 1px dotted var(--accent); }
+  a.xref:hover { background: var(--accent-light); }
+
+  /* Tables */
+  .table-wrap { overflow-x: auto; margin: 12px 0; -webkit-overflow-scrolling: touch; border-radius: 6px; }
+  table { border-collapse: collapse; min-width: 100%; font-size: 13.5px; background: #fff; }
+  th { background: var(--table-header); color: #fff; padding: 8px 12px; text-align: left; font-weight: 600; white-space: nowrap; }
+  td { padding: 7px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) td { background: #eef5f3; }
+  @media (hover: hover) and (pointer: fine) { tr:hover td { background: var(--accent-light); } }
+  td.c, th.c { text-align: center; white-space: nowrap; }
+  tr.group-row td { background: #cfe6e1; font-weight: 700; color: #0b5d54; }
+  /* Sticky 旧/新 label column for the horizontally-scrolling conversion tables */
+  th.rowlabel { position: sticky; left: 0; z-index: 2; background: #cfe6e1; color: #0b5d54; font-weight: 700; }
+  .title-br { }
+  @media (max-width: 480px) { .title-br { display: none; } }
+
+  /* Code blocks */
+  pre { background: #14302c; color: #cfe5e0; padding: 16px; border-radius: 6px; overflow-x: auto; font-size: 13px; line-height: 1.5; margin: 12px 0; white-space: pre-wrap; word-break: break-word; }
+  code { font-family: 'Menlo', 'Courier New', monospace; font-size: 12.5px; }
+
+  /* Boxes */
+  .warn { background: #fef0ef; border-left: 4px solid var(--warning); padding: 10px 14px; border-radius: 4px; margin: 12px 0; font-size: 13.5px; }
+  .note { background: #fffbea; border-left: 4px solid #e6ac00; padding: 10px 14px; border-radius: 4px; margin: 12px 0; font-size: 13.5px; }
+  .keybox { background: var(--accent-light); border: 1px solid #b6dcd4; border-left: 4px solid var(--accent); padding: 12px 16px; border-radius: 6px; margin: 14px 0; font-size: 14px; }
+  .keybox .star-title { font-weight: 800; color: var(--table-header); font-size: 15px; display: block; margin-bottom: 4px; }
+  .confidential { background: #2b2b2b; color: #ffd6d6; font-size: 12px; font-weight: 700; letter-spacing: .04em; padding: 7px 14px; border-radius: 6px; margin: 14px 0 8px; display: inline-block; }
+
+  /* hr */
+  hr { border: none; border-top: 1px solid var(--border); margin: 28px 0; }
+
+  /* Badge */
+  .badge { display: inline-block; background: var(--accent); color: #fff; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+  .badge.red { background: var(--warning); }
+
+  /* Revision list */
+  .revisions { font-size: 12px; color: #777; margin: 8px 0 0; }
+  .revisions li { margin: 2px 0; }
+
+  /* Back to top */
+  #back-top { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #fff;
+    border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 20px; cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0,0,0,.25); display: none; z-index: 300; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    #sidebar { transform: translateX(calc(-1 * var(--sidebar-width))); }
+    #sidebar.open { transform: translateX(0); }
+    #main { margin-left: 0; padding: 20px 16px 70px; }
+  }
+  @media (min-width: 769px) {
+    #sidebar { transform: translateX(0) !important; }
+    #sidebar.hidden { transform: translateX(calc(-1 * var(--sidebar-width))) !important; }
+    #main.full { margin-left: 0; }
+    #main:not(.full) { margin-left: var(--sidebar-width); }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div id="topbar">
+  <button id="menu-toggle" onclick="toggleSidebar()" aria-label="メニューを開閉" aria-controls="sidebar" aria-expanded="false">☰</button>
+  <div class="brand"><span aria-hidden="true">🫀</span> <span class="brand-text">阪大 成人心臓移植プロトコール</span></div>
+  <div id="search-wrap">
+    <span style="font-size:14px;opacity:.7">🔍</span>
+    <input id="search-input" type="text" placeholder="キーワード検索..." autocomplete="off">
+    <span id="search-count"></span>
+    <div id="search-nav">
+      <button onclick="moveMatch(-1)" title="前へ">▲</button>
+      <button onclick="moveMatch(1)" title="次へ">▼</button>
+      <button onclick="clearSearch()" title="クリア">✕</button>
+    </div>
+  </div>
+</div>
+
+<!-- OVERLAY -->
+<div id="overlay" onclick="closeSidebar()"></div>
+
+<!-- SIDEBAR -->
+<nav id="sidebar">
+  <a class="home-link" href="index.html">← 手配師マニュアルに戻る</a>
+
+  <div class="sidebar-section-label">1. 術前</div>
+  <a href="#preop">術前</a>
+  <a class="sub" href="#preop-exam">検査</a>
+  <a class="sub" href="#preop-immuno">免疫抑制療法（減感作）</a>
+  <a class="sub" href="#preop-infection">感染予防</a>
+
+  <div class="sidebar-section-label">2. 術中</div>
+  <a href="#intraop">術中</a>
+  <a class="sub" href="#intraop-immuno">免疫抑制療法</a>
+  <a class="sub" href="#intraop-infection">感染予防</a>
+  <a class="sub" href="#intraop-exam">検査</a>
+
+  <div class="sidebar-section-label">3. 術後〜退院まで</div>
+  <a href="#postop">術後〜退院まで</a>
+  <a class="sub" href="#postop-immuno">免疫抑制療法（導入・維持）</a>
+  <a class="sub star" href="#target-table">⭐ 目標値・生検予定</a>
+  <a class="sub" href="#rejection">拒絶反応の治療</a>
+  <a class="sub" href="#postop-infection">感染予防</a>
+  <a class="sub" href="#complication">合併症予防の薬剤</a>
+  <a class="sub" href="#drug-list">周術期投与薬剤一覧</a>
+
+  <div class="sidebar-section-label">4. 経過観察</div>
+  <a href="#followup">術後の定期検査など</a>
+
+  <div class="sidebar-section-label">5. 慢性期の諸問題</div>
+  <a href="#chronic">慢性期の諸問題</a>
+  <a class="sub" href="#chronic-adjust">免疫抑制薬の調節</a>
+  <a class="sub" href="#tac-csa">Tac⇔CsA 変更</a>
+  <a class="sub" href="#mtor">mTOR阻害薬の導入</a>
+  <a class="sub" href="#steroid-taper">ステロイド漸減・中止</a>
+  <a class="sub" href="#chronic-infection">移植後感染症</a>
+  <a class="sub" href="#vaccine">ワクチン接種</a>
+  <a class="sub" href="#other-surgery">他臓器手術時の調整</a>
+  <a class="sub" href="#pregnancy">妊娠・出産</a>
+
+  <div class="sidebar-section-label">6. 付録</div>
+  <a href="#appendix">付録</a>
+  <a class="sub" href="#app-ivig">IVIg＋CPA</a>
+  <a class="sub" href="#app-atg">ATG（サイモ／リンフォ）</a>
+  <a class="sub" href="#app-okt3">OKT3</a>
+  <a class="sub" href="#app-cmv">従来のCMV予防</a>
+  <a class="sub" href="#app-nystatin">従来の真菌症予防</a>
+  <a class="sub" href="#app-csa-tac">CsA→Tac 変更</a>
+  <a class="sub" href="#app-toxo">トキソプラズマ治療</a>
+
+  <div class="sidebar-section-label">7. 血中濃度換算表</div>
+  <a class="star" href="#conversion">⭐ 換算表（新旧機器）</a>
+  <a class="sub" href="#conv-formula">換算式</a>
+  <a class="sub" href="#conv-tac">タクロリムス</a>
+  <a class="sub" href="#conv-csa">シクロスポリン</a>
+  <a class="sub" href="#conv-evl">エベロリムス</a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main id="main">
+  <h1 class="page-title">大阪大学　成人心臓移植プロトコール<br class="title-br">術前・術後管理マニュアル</h1>
+  <p class="byline">斎藤俊輔 / 塚本泰正 / 久保田香</p>
+  <span class="confidential">⚠ 部外秘 — 関係者以外への共有を禁ず</span>
+  <p class="updated">2020年12月 改訂版（ver.2）</p>
+  <details>
+    <summary style="font-size:12.5px;color:#777;cursor:pointer;">改訂履歴</summary>
+    <ul class="revisions">
+      <li>斎藤俊輔　2009年7月14日</li>
+      <li>2010年5月9日、9月29日、2012年2月22日　小改訂</li>
+      <li>塚本泰正 / 久保田香　2018年2月　小改訂</li>
+      <li><strong>2020年12月　改訂</strong></li>
+    </ul>
+  </details>
+
+  <!-- ==================== 1. 術前 ==================== -->
+  <h2 id="preop"><span class="num">1</span>術前</h2>
+
+  <h3 id="preop-exam">検査</h3>
+  <ol>
+    <li>心臓移植登録に必要な諸検査</li>
+    <li>PRA測定
+      <ul>
+        <li>LVAD装着患者や輸血を行った患者では移植登録3年後を目安に測定する。</li>
+        <li><strong>⇒ ドナーHLA抗体陽性もしくはPRA陽性（≧20%）は術前の減感作療法を考慮する。</strong></li>
+      </ul>
+    </li>
+    <li>感染症諸検査 ⇒ 待機期間中に必要に応じて予防接種を行う</li>
+    <li>心臓手術術前の一般検査</li>
+  </ol>
+
+  <h3 id="preop-immuno">免疫抑制療法</h3>
+
+  <h4>Preparation</h4>
+  <p>通常の症例で術前の免疫抑制薬投与は基本的に行わない。</p>
+
+  <h4>PRA陽性症例に対する減感作療法</h4>
+  <p>日本においては、心移植時期の予測が難しいため、減感作療法の時期・回数の決定は非常に困難であると考えられる。実際の減感作療法の適応については個々の症例において慎重に検討する必要がある。以下に減感作療法のプロトコールを2例紹介する。なお、当院において減感作療法目的に血漿交換を行った症例では、直後にPRAの低下を認めたものの約1ヵ月でPRA 100%まで再上昇した。</p>
+  <ol>
+    <li><strong>ドナーHLA抗体陽性もしくはPRA≧20%</strong>
+      <p><strong>a. 血漿交換 ＋ IVIg のプロトコール</strong></p>
+      <ul>
+        <li>血漿交換 3〜5回、隔日。</li>
+        <li>IVIg 2 g/kg</li>
+        <li>前投薬：IVIg投与前にアセトアミノフェン（カロナール）600 mg、塩酸ジフェンヒドラミン（レスタミン）30〜50 mg 経口投与。</li>
+        <li>グロブリン製剤（ヴェノグロブリンIHなど）500 mg/kg/日を8時間以上かけて投与。これを4日間続ける。</li>
+        <li>抗HLA抗体（T細胞、B細胞）を治療開始前、および開始後毎週測定する。PRAが陰性になったら、1〜3ヵ月に1回測定する。</li>
+        <li><em>ダイレクトクロスマッチ陽性例における心移植は日本では禁止されている。</em></li>
+        <li>移植後、2日目および4日目に血漿交換。</li>
+      </ul>
+      <p>b. IVIg ＋ シクロホスファミドのプロトコール → <a class="xref" href="#app-ivig">付録参照</a></p>
+    </li>
+    <li>術中血漿交換
+      <ul>
+        <li>PRAが陰性化しない症例では、手術室にて、再灌流の前および後に血漿交換を行う。</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h3 id="preop-infection">感染予防</h3>
+
+  <h4>ワクチン接種</h4>
+  <ol>
+    <li>B型肝炎：HBs抗体陰性例ではワクチン接種を行う。</li>
+    <li>インフルエンザA・B：毎年11月に予防接種を行う。</li>
+    <li>心臓移植後の免疫抑制療法下での生ワクチン接種は推奨されないため、麻疹、風疹、水痘、ムンプスなどについて、待機期間中に抗体の有無について検査を行い、必要に応じて予防接種を行っておくこと。</li>
+  </ol>
+
+  <h4>抗菌薬</h4>
+  <ul>
+    <li>術前感染症合併例やMRSAなどの保菌症例（とくにLVAD患者）においては、培養検査結果に基づき、周術期の抗菌薬使用法を決定（ICTコンサルト）。</li>
+  </ul>
+
+  <!-- ==================== 2. 術中 ==================== -->
+  <h2 id="intraop"><span class="num">2</span>術中</h2>
+
+  <h3 id="intraop-immuno">免疫抑制療法</h3>
+  <h4>メチルプレドニゾロン</h4>
+  <ul>
+    <li>再灌流直前に人工心肺回路内にメチルプレドニゾロン（ソル・メドロール）<strong>1000 mg</strong></li>
+  </ul>
+
+  <h3 id="intraop-infection">感染予防</h3>
+  <h4>抗菌薬</h4>
+  <ul>
+    <li>通常の開心術と同じプロトコールで、皮膚切開前に抗菌薬 div.</li>
+    <li>術前感染症合併例やMRSAなどの保菌症例（とくにLVAD患者）においては、培養検査結果に基づき、周術期の抗菌薬使用法を決定（ICTコンサルト）。</li>
+  </ul>
+  <h4>HBc抗体陽性ドナーの場合</h4>
+  <ul>
+    <li>HBs人免疫グロブリン（ヘブスブリン静注）1000単位、再灌流直前にゆっくり iv.</li>
+    <li>その後、1日おきに計4回同量を投与（day 2, 4, 6）</li>
+  </ul>
+
+  <h3 id="intraop-exam">検査</h3>
+  <h4>心筋障害関連検査</h4>
+  <ul>
+    <li>虚血再灌流前後での心筋漏出蛋白、炎症関連サイトカインの測定を行う。</li>
+    <li>測定項目：FABP、トロポニンT、CKMB、IL-6、IL-8</li>
+    <li>測定タイミング：人工心肺前、再灌流前、再灌流1時間後、再灌流3時間後、再灌流24時間後</li>
+    <li>血清分離剤入りスピッツに9 mL（血清用）、EDTA入りスピッツに4 mL（血漿用）採取し、氷上に保管。</li>
+    <li>術後、遠心分離し別容器に分注して −20℃ で冷凍保管し、SRLに提出する。</li>
+  </ul>
+  <h4>摘出心の病理検査</h4>
+  <ul>
+    <li>左室自由壁、心室中隔、右室自由壁の3ヵ所に分けて採取する。</li>
+    <li>各部位について、ホルマリン・RNA later・TissueTec・凍結の4通りに固定する。
+      <ul>
+        <li><strong>ホルマリン</strong>：病院病理提出用。内膜〜筋層〜外膜が連続したブロック。HE染色およびマッソン・トリクロム染色を依頼（依頼用紙に明記）。</li>
+        <li><strong>RNA later</strong>：心摘出後15分以内に浸漬。ブロックは5 mm角程度まで分割。数時間〜24時間 4℃ 保管後、−80℃ 冷凍庫保管。</li>
+        <li><strong>TissueTec</strong>：専用容器に入れ液体窒素で固定。−80℃ 冷凍庫保管。</li>
+        <li><strong>凍結</strong>：エッペンドルフチューブに入れ液体窒素で固定。−80℃ 冷凍庫保管。</li>
+      </ul>
+    </li>
+  </ul>
+
+  <!-- ==================== 3. 術後〜退院まで ==================== -->
+  <h2 id="postop"><span class="num">3</span>術後〜退院まで</h2>
+
+  <h3 id="postop-immuno">免疫抑制療法</h3>
+
+  <h4>導入療法</h4>
+  <p>通常、導入療法は行わない。腎機能障害など何らかの理由でCNIの早期導入が困難な患者では、導入療法を行いCNIの導入を遅らせる。</p>
+  <ol>
+    <li><strong>basiliximab（シムレクト）を用いた導入療法のプロトコール</strong>
+      <ul>
+        <li>basiliximab（シムレクト）20 mg iv. 術当日（POD0）ICU帰室後、ドレーン出血がコントロールされた時点で投与、第4病日（POD4）に同量を追加投与。</li>
+        <li>POD7頃〜カルシニューリン阻害薬を開始</li>
+      </ul>
+    </li>
+    <li>ATG（サイモグロブリン）を用いた導入療法のプロトコール → <a class="xref" href="#app-atg">付録参照</a></li>
+    <li>OKT3を用いた導入療法のプロトコール → <a class="xref" href="#app-okt3">付録参照</a></li>
+  </ol>
+
+  <h4>維持療法</h4>
+  <div class="note"><strong>血中濃度の安定性の観点から、免疫抑制薬のうち、カルシニューリン阻害薬、MMF、mTOR阻害薬は先発薬のみを使用し、ジェネリックは推奨しない。</strong></div>
+
+  <h4>1) ステロイド</h4>
+  <ul>
+    <li>ICU入室後メチルプレドニゾロン（ソル・メドロール）125 mg を8時間毎 3回 i.v.</li>
+    <li>24時間後以降、プレドニン <strong>20 mg/day</strong> i.v.</li>
+    <li>経口摂取可能となったら、プレドニン 20 mg/day p.o.</li>
+    <li>その後、免疫抑制薬投与量表に従い減量。</li>
+  </ul>
+
+  <h4>2) ミコフェノール酸モフェチル（MMF：セルセプト）</h4>
+  <ul>
+    <li>術後第1病日夕より、500 mg 分2（250 mg×2回/day）経管投与。すでに経口摂取可能な場合は p.o.</li>
+    <li>白血球減少や下痢などがなければ、第2〜3病日には1000 mg 分2（500 mg×2回/day）に増量。</li>
+    <li>白血球減少に注意しつつ、max <strong>2 g/day</strong> まで増量（後述の投与量表参照）。</li>
+    <li>下痢に対しては半夏瀉心湯 3包分3</li>
+    <li>白血球減少や下痢などがコントロール困難な場合、CMV感染時には減量もしくはmTOR阻害薬への切り替えを考慮する。</li>
+  </ul>
+
+  <h4>3) カルシニューリン阻害薬（CNI）</h4>
+  <ul>
+    <li>タクロリムス（プログラフ）またはシクロスポリン（ネオーラル）を用いる。</li>
+    <li><strong>基本的にはタクロリムスを用いる。糖尿病合併症例ではシクロスポリンを用いる。</strong></li>
+    <li>抗アルドステロン薬（スピロノラクトン）は原則CNIと<em>併用禁忌</em>。</li>
+    <li>Ca拮抗薬はCNIとの相互作用から血中濃度が変動しうるため、<em>併用注意</em>。</li>
+    <li>投与中に頭痛や神経症状がみられた場合にはPRES（後述）も疑う。</li>
+  </ul>
+  <p><strong>3-a) タクロリムス（プログラフ、グラセプター）</strong></p>
+  <ul>
+    <li>術後第1病日夕より、4〜6 mg 分2（2〜3 mg×2回/day）経管投与（1回 0.03〜0.15 mg/kg を1日2回）。</li>
+    <li>経管投与が不能な場合は、プログラフ注 1 mg/day（0.05 mg/kg/24hr）の量で持続静注開始。</li>
+    <li>静注から経口への変更は、静注1日量の<strong>4倍量</strong>を2回に分けて投与する。<br>例：プログラフ注 1 mg/day → 経口量は 4 mg 分2（2 mg×2回/day）</li>
+    <li>グラセプターの場合は一日量を分1で内服</li>
+  </ul>
+  <p><strong>3-b) シクロスポリン（ネオーラル）</strong></p>
+  <ul>
+    <li>術後第1病日夕より、100 mg 分2（50 mg×2回/day）経管投与（添付文書上は10〜15 mg/kg/day）。</li>
+    <li>経管投与不能な場合は、サンディミュン注 1 mg/kg/day の量で持続静注開始。</li>
+    <li>静注から経口への変更は静注1日量と同量のネオーラルを2回に分けて投与する</li>
+  </ul>
+
+  <h4>4) mTOR阻害薬</h4>
+  <ul>
+    <li>CNIによる腎機能障害の軽減や移植心冠動脈病変進行抑制のため、mTOR阻害薬を用いる。我が国ではエベロリムス（サーティカン）のみ投与可能。</li>
+    <li>創傷治癒遅延が懸念されるため、移植直後の使用は避ける。</li>
+    <li>詳細な導入方法については後述（<a class="xref" href="#mtor">慢性期合併症予防</a>）。</li>
+  </ul>
+
+  <!-- ===== 目標値テーブル ===== -->
+  <h3 id="target-table">⭐ 免疫抑制薬目標値および生検予定</h3>
+  <div class="keybox">
+    <span class="star-title">⭐️ 最重要テーブル</span>
+    以下の値は<strong>旧検査機器</strong>に基づく目標トラフ値です。<a class="xref" href="#conversion">換算表（本ドキュメント末尾）</a>で新値に換算してください。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th class="c">移植後時期</th><th class="c">生検</th><th class="c">プレドニン<br>(mg/日)</th>
+          <th class="c">プログラフ<br>トラフ (ng/mL)</th><th class="c">ネオーラル<br>トラフ (ng/mL)</th>
+          <th class="c">セルセプト<br>BW&lt;50kg (mg/日)</th><th class="c">セルセプト<br>BW≧50kg (mg/日)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="c">0〜1週</td><td class="c">1週</td><td class="c">20</td><td class="c">12〜14</td><td class="c">160〜180</td><td class="c">500→1000</td><td class="c">500→1000</td></tr>
+        <tr><td class="c">1〜2週</td><td class="c">2週</td><td class="c">20</td><td class="c">12〜14</td><td class="c">160〜180</td><td class="c">1000〜1500</td><td class="c">1500</td></tr>
+        <tr><td class="c">2〜3週</td><td class="c">3週</td><td class="c">20</td><td class="c">12〜14</td><td class="c">160〜180</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">3〜4週</td><td class="c">4週</td><td class="c">20</td><td class="c">12〜14</td><td class="c">160〜180</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">4〜6週</td><td class="c">6週</td><td class="c">15</td><td class="c">10〜12</td><td class="c">160〜180</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">6〜8週</td><td class="c">8週 (Full)</td><td class="c">12.5</td><td class="c">10〜12</td><td class="c">160〜180</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">8〜10週</td><td class="c">10週</td><td class="c">10</td><td class="c">10〜12</td><td class="c">160〜180</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">10〜12週</td><td class="c">12週</td><td class="c">7.5</td><td class="c">10〜12</td><td class="c">160〜180</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">3〜4ヶ月</td><td class="c">16週</td><td class="c">5</td><td class="c">10〜12</td><td class="c">130〜150</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">4〜5ヶ月</td><td class="c">20週</td><td class="c">5</td><td class="c">10〜12</td><td class="c">130〜150</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">5〜6ヶ月</td><td class="c">24週</td><td class="c">5</td><td class="c">10〜12</td><td class="c">130〜150</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">0.5〜1年</td><td class="c">1年 (Full)</td><td class="c">5（カテ前2.5→2.5）</td><td class="c">8〜10</td><td class="c">100〜130</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">1〜2年</td><td class="c">2年 (Full)</td><td class="c">カテ前 off</td><td class="c">8</td><td class="c">100</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">2〜3年</td><td class="c">1年毎</td><td class="c">—</td><td class="c">8</td><td class="c">100</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">3〜5年</td><td class="c">1年毎</td><td class="c">—</td><td class="c">8</td><td class="c">100</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">5〜10年</td><td class="c">1年毎</td><td class="c">—</td><td class="c">8</td><td class="c">100</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+        <tr><td class="c">10年〜</td><td class="c">2年毎</td><td class="c">—</td><td class="c">6〜8</td><td class="c">80〜100</td><td class="c">1000〜1500</td><td class="c">1500〜2000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h4>生検予定の注記</h4>
+  <ul>
+    <li>生検の予定は、術後1カ月間は週1回、3ヵ月まで2週に1回、半年まで1ヵ月に1回、その次は半年後の1年目に行い、以降1年ごと。</li>
+    <li>通常は生検と右心カテ</li>
+    <li>Full study：生検、右心カテ、CAG、IVUS（術後2ヶ月、1、2、3、5年）</li>
+    <li>投薬の目標値は、拒絶反応や他臓器の障害が全くない場合の目安である。実際には個々の症例の経過により調節する。</li>
+    <li>治療を必要とする拒絶反応を認めた場合は増量を検討、旧分類 grade 2 相当の所見が連続した場合には減量を見合わせる。</li>
+    <li>拒絶反応に対する治療を行った場合や、免疫抑制薬の変更を行った際には、そのつど生検を追加する。</li>
+  </ul>
+
+  <!-- ===== 拒絶反応 ===== -->
+  <h3 id="rejection">拒絶反応に対する治療</h3>
+
+  <h4>細胞性拒絶の治療</h4>
+  <ol>
+    <li><strong>Grade 0〜1R（旧分類 grade 0〜2）</strong>
+      <ul>
+        <li>治療の必要なし。</li>
+        <li>ただし旧分類 grade 2 が遷延する場合、免疫抑制薬の調整を行う（減量を見合わせる、増量するなど）</li>
+      </ul>
+    </li>
+    <li><strong>Grade 2R（旧分類 grade 3A）</strong>
+      <ul>
+        <li>原則として入院加療。</li>
+        <li>ステロイドパルス：メチルプレドニゾロン（ソル・メドロール）<strong>1 g/day div. × 3日間</strong></li>
+        <li>免疫抑制薬投与量の調整。</li>
+        <li>7〜14日後に再度生検。軽快していた場合でも、術後6ヵ月以降の患者では3〜6ヵ月後に再度の生検を考慮する。</li>
+        <li>連続する場合は、CNIの種類変更やエベロリムスの導入を検討する。2度のステロイドパルスにて改善しない場合には、ATG治療を検討する。</li>
+      </ul>
+    </li>
+    <li><strong>Grade 3R（旧分類 grade 3B, grade 4）</strong>
+      <ul>
+        <li>ステロイドパルス（メチルプレドニゾロン 1 g × 3日間）に加えてシムレクト（basiliximab、抗IL-2R抗体薬）投与を検討する。ただし、シムレクトは保険適応外。</li>
+        <li>＊従来のプロトコールではステロイドパルス ＋ ATGやOKT-3による治療の記載があり、ATGについては保険適応もあるが、アナフィラキシーなどの懸念から上記シムレクト投与を推奨する。</li>
+        <li>7日後に再度生検。3ヶ月後に再度の生検を推奨する。</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h4>抗体関連性（液性）拒絶の診断・治療</h4>
+  <p><strong>診断：</strong></p>
+  <ul>
+    <li>特に誘因のない心機能の低下・血行動態の悪化（とくに術後2週間前後に多い）を認めたら、常に抗体関連性拒絶の可能性を念頭に置く。</li>
+    <li>心エコー上、特に初期では収縮能は保たれていることが多い。心筋の浮腫により壁厚の増加を認めることがある。</li>
+    <li>生検所見は、細胞性拒絶を認めないことが多い。間質の浮腫・血管内皮細胞の肥大像。免疫染色にて C3d, C4d 陽性。</li>
+    <li>PRA値の上昇。</li>
+    <li>抗ドナー抗体の証明（フローサイトメトリー）</li>
+  </ul>
+  <p><strong>治療：</strong></p>
+  <ul>
+    <li>血漿交換を計5回、1〜2週間かけて行う。IVIgは 0.5 g/kg × 1回でよい。</li>
+    <li>血漿交換終了後、rituximab（リツキサン：抗CD20モノクローナル抗体）375 mg/m² を投与する。1週間ごとのB細胞数を計測し、追加投与を考慮する。</li>
+    <li>MMF増量もしくは早期のEVL導入を考慮する。</li>
+    <li>治療中は血算、白血球分画（目視法）、リンパ球分画を毎日測定する。</li>
+    <li>1〜2週間後に再度生検。</li>
+    <li>退院後、1年間はDSA 3ヵ月ごと、B細胞数 3ヵ月ごとに測定。</li>
+  </ul>
+
+  <!-- ===== 感染予防 ===== -->
+  <h3 id="postop-infection">感染予防</h3>
+
+  <h4>1) 院内感染予防・抗菌薬使用</h4>
+  <ul>
+    <li>術直後は、可能な限りICUのクリーンルームに収容する。</li>
+    <li>一般的な抗菌薬使用は通常の開心術に準ずる。</li>
+    <li>術前感染症合併例やMRSAなどの保菌症例においては、ICTコンサルト。</li>
+  </ul>
+
+  <h4>2) ヒト免疫グロブリン</h4>
+  <ul>
+    <li>CMVに対し高力価のヒト免疫グロブリン <strong>5 g/day iv. × 3日間</strong></li>
+  </ul>
+
+  <h4>3) CMV予防</h4>
+  <ul>
+    <li>ガンシクロビル（デノシン）3日間 div（維持治療量でよい）。その後バルガンシクロビル（バリキサ）450〜900 mg 分1 内服。</li>
+    <li>バリキサ投与量は当院での経験では体格が大きくない多くの患者において 450 mg/日 でCMV発症抑制できている。</li>
+    <li>骨髄抑制の副作用に注意する。</li>
+  </ul>
+  <p><strong>デノシン投与量調節表（ガンシクロビル）</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th class="c">Ccr (mL/min)</th><th class="c">初期治療<br>用量 (mg/kg)</th><th class="c">初期治療<br>間隔 (hr)</th><th class="c">維持治療<br>用量 (mg/kg)</th><th class="c">維持治療<br>間隔 (hr)</th></tr></thead>
+      <tbody>
+        <tr><td class="c">≧70</td><td class="c">5.0</td><td class="c">12</td><td class="c">5.0</td><td class="c">24</td></tr>
+        <tr><td class="c">50〜69</td><td class="c">2.5</td><td class="c">12</td><td class="c">2.5</td><td class="c">24</td></tr>
+        <tr><td class="c">25〜49</td><td class="c">2.5</td><td class="c">24</td><td class="c">1.25</td><td class="c">24</td></tr>
+        <tr><td class="c">10〜24</td><td class="c">1.25</td><td class="c">24</td><td class="c">0.625</td><td class="c">24</td></tr>
+        <tr><td class="c">&lt;10（透析）</td><td class="c">1.25</td><td class="c">透析後 週3回</td><td class="c">0.635</td><td class="c">透析後 週3回</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <ul><li>デノシン 1バイアル（500 mg）当たり100 mL以上の補液で希釈、1時間以上かけて点滴静注する。</li></ul>
+
+  <p><strong>バリキサ投与量調節表（バルガンシクロビル）</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th class="c">Ccr (mL/min)</th><th class="c">初期治療<br>一回用量</th><th class="c">初期治療<br>用法</th><th class="c">維持治療・発症抑制<br>一回用量</th><th class="c">維持治療・発症抑制<br>用法</th></tr></thead>
+      <tbody>
+        <tr><td class="c">≧60</td><td class="c">900 mg</td><td class="c">1日2回</td><td class="c">900 mg</td><td class="c">1日1回</td></tr>
+        <tr><td class="c">40〜59</td><td class="c">450 mg</td><td class="c">1日2回</td><td class="c">450 mg</td><td class="c">1日1回</td></tr>
+        <tr><td class="c">25〜39</td><td class="c">450 mg</td><td class="c">1日1回</td><td class="c">450 mg</td><td class="c">2日に1回</td></tr>
+        <tr><td class="c">10〜24</td><td class="c">450 mg</td><td class="c">2日に1回</td><td class="c">450 mg</td><td class="c">週2回</td></tr>
+        <tr><td class="c">&lt;10（透析）</td><td class="c">200 mg</td><td class="c">透析後 週3回</td><td class="c">100 mg</td><td class="c">透析後 週3回</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>4) ニューモシスチス感染症予防</h4>
+  <ul>
+    <li>経口摂取開始後、ST合剤（バクトラミン）1錠 分1 × <strong>1年間</strong></li>
+    <li>白血球減少時にはバクトラミン減量・中止を考慮</li>
+  </ul>
+
+  <h4>5) 消化管真菌症予防</h4>
+  <ul>
+    <li>経口摂取開始後、ハリゾンシロップ 4 mL/分4 毎食後＋眠前に含嗽後内服（グチュグチュゴックン）× <strong>1年間</strong></li>
+  </ul>
+
+  <h4>6) その他</h4>
+  <ul>
+    <li>イソジンガーグルでうがい。毎食後、外出後。</li>
+    <li>HBc抗体陽性ドナー対応 → 術前の項を参照。</li>
+  </ul>
+
+  <!-- ===== 合併症予防の薬剤 ===== -->
+  <h3 id="complication">合併症予防のために周術期から投与する薬剤</h3>
+
+  <h4>抗血小板薬</h4>
+  <ul>
+    <li>術後止血確認後、バイアスピリン <strong>100 mg 分1/day p.o.</strong> 開始。</li>
+  </ul>
+
+  <h4>脂質異常症・移植後冠動脈病変予防</h4>
+  <ol>
+    <li><strong>スタチン</strong>
+      <ul>
+        <li>経口摂取開始後、プラバスタチン（メバロチン）10 mg 分1/day p.o. 開始。</li>
+        <li>目標：T-Cho &lt;220 mg/dL、TG &lt;150 mg/dL、HDL &gt;50 mg/dL、LDL &lt;100 mg/dL</li>
+        <li>コントロール不良時、プラバスタチン 20 mg/day に増量もしくはアトルバスタチン（リピトール）10 mg 分1/day に変更（最大 20 mg/day）。</li>
+        <li>シクロスポリン使用時は他のストロングスタチン（ロスバスタチン、ピタバスタチンなど）は<em>禁忌</em>。</li>
+      </ul>
+    </li>
+    <li><strong>エゼチミブ</strong>
+      <ul>
+        <li>スタチンにてコントロール不良時には、エゼチミブ（ゼチーア）10 mg p.o. を追加。肝機能障害がある場合は、スタチンとの併用禁。</li>
+      </ul>
+    </li>
+    <li><strong>PCSK9阻害薬</strong>
+      <ul>
+        <li>上記にてコントロール困難な症例では考慮する。レパーサ、プラルエント（プラルエントはスタチン不耐症例にも投与可）。</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h4>心・腎保護および高血圧治療</h4>
+  <div class="note"><strong>Ca拮抗薬は免疫抑制薬との相互作用を有しているため、投与に際して血中濃度の変動に注意を要する。</strong></div>
+  <ol>
+    <li><strong>ACE阻害薬またはARB</strong>
+      <ul><li>経口摂取開始後、エナラプリル（レニベース）2.5 mg/day p.o. 開始（低血圧時には 1.25 mg/day より）。</li></ul>
+    </li>
+    <li><strong>β遮断薬</strong>
+      <ul>
+        <li>原則として使用しない。心移植後は除神経されているため、β遮断作用により過度の徐脈を誘発する危険性がある。</li>
+        <li>頻脈に対してはイバブラジン（コララン）投与も考慮。</li>
+      </ul>
+    </li>
+    <li><strong>α遮断薬</strong>
+      <ul><li>ACE阻害薬やARBにて血圧コントロール不十分な場合。ドキサゾシン（カルデナリン）1 mg より開始（最大 8 mg/日）。</li></ul>
+    </li>
+    <li><strong>利尿薬</strong>
+      <ul><li>ルーチンとしては不要。<em>スピロノラクトンは原則CNIと併用禁忌</em>。</li></ul>
+    </li>
+    <li><strong>Ca拮抗薬</strong>
+      <ul><li>CNIやmTOR阻害薬との相互作用あり（一般的には血中濃度上昇）。血中濃度のモニタリングが必要。</li></ul>
+    </li>
+  </ol>
+
+  <h4>骨粗鬆症予防</h4>
+  <p>ステロイド長期投与が見込まれるため、骨粗鬆症の予防が重要。術後早期より 1)〜3) または 4) による予防を開始し、骨塩定量のモニタリングを行う。</p>
+  <div class="note">顎骨壊死が懸念されるため、ビスフォスフォネート製剤やデノスマブ投与症例では歯科治療の際の中止を考慮する。</div>
+  <ol>
+    <li><strong>カルシウム製剤</strong>：アスパラ-CA 1.2 g/day 分3（200 mg錠 6錠分3）</li>
+    <li><strong>ビタミンD製剤</strong>：アルファカルシドール（アルファロールカプセルまたはワンアルファ）1 μg/day</li>
+    <li><strong>ビスフォスフォネート</strong>：アクトネル 17.5 mg × 1/週、またはボナロン 35 mg × 1/週、またはフォサマック 5 mg/日
+      <ul><li>起床後30分以内に十分量（約180 mL）の水とともに服用し、服用後30分は座位または立位を保つ。</li></ul>
+    </li>
+    <li><strong>デノスマブ（プラリア）</strong>：ビスフォスフォネート製剤投与困難症例または効果不十分症例。プラリア 60 mg を6ヶ月に1回、皮下注射。</li>
+  </ol>
+
+  <!-- ===== 周術期投与薬剤一覧 ===== -->
+  <h3 id="drug-list">心臓移植周術期より投与する薬剤一覧</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>薬剤</th><th>開始時期</th><th>初期投与量の例</th><th>備考</th></tr></thead>
+      <tbody>
+        <tr class="group-row"><td colspan="4">免疫抑制薬</td></tr>
+        <tr><td>ステロイド</td><td>術直後</td><td>mPSL 125 mg × 3 → PSL 20 mg/日</td><td>手術4週以降漸減</td></tr>
+        <tr><td>CNI</td><td>POD1夕〜</td><td>プログラフ 2〜3 mg × 2回/日</td><td>シムレクト投与時1週間程度導入延期可能</td></tr>
+        <tr><td>MMF</td><td>POD1夕〜</td><td>セルセプト 250 mg × 2回/日</td><td>WBC/消化器症状みて漸増</td></tr>
+        <tr class="group-row"><td colspan="4">感染予防</td></tr>
+        <tr><td>周術期抗菌薬</td><td>術直後</td><td></td><td>適宜ICTコンサルト</td></tr>
+        <tr><td>免疫グロブリン製剤</td><td>術直後</td><td>5 g × 3日間 div</td><td>CMV高力価製剤を使用</td></tr>
+        <tr><td>抗CMV薬（デノシン）</td><td>術直後</td><td>デノシン × 3日 div</td><td></td></tr>
+        <tr><td>抗CMV薬（バリキサ）</td><td>POD3〜</td><td>バリキサ 450〜900 mg 分1</td><td>術後6ヶ月まで</td></tr>
+        <tr><td>ST合剤</td><td>経口摂取開始後</td><td>バクトラミン 1錠 分1</td><td>術後1年まで</td></tr>
+        <tr><td>抗真菌薬</td><td>経口摂取開始後</td><td>ハリゾンシロップ 4 mL 分4</td><td>含嗽後内服、術後1年</td></tr>
+        <tr class="group-row"><td colspan="4">抗血栓・心腎保護薬</td></tr>
+        <tr><td>アスピリン</td><td>術後止血確認後</td><td>アスピリン 100 mg 分1</td><td></td></tr>
+        <tr><td>スタチン</td><td>経口摂取開始後</td><td>プラバスタチン 10 mg 分1</td><td></td></tr>
+        <tr><td>ACE阻害薬（ARB）</td><td>経口摂取開始後</td><td>エナラプリル 2.5 mg 分1</td><td></td></tr>
+        <tr class="group-row"><td colspan="4">骨粗鬆症予防薬</td></tr>
+        <tr><td>Ca製剤</td><td>経口摂取開始後</td><td>アスパラCa 6錠 分3</td><td></td></tr>
+        <tr><td>ビタミンD製剤</td><td>経口摂取開始後</td><td>αカルシドール 1 μg 分1</td><td></td></tr>
+        <tr><td>ビスフォスフォネートもしくはデノスマブ</td><td>経口摂取開始後</td><td>ボナロン 35 mg/週 または プラリア sc 60 mg/6ヶ月</td><td>ビスフォスフォネートは内服後座位/立位保持が必要</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ==================== 4. 術後の定期検査 ==================== -->
+  <h2 id="followup"><span class="num">4</span>術後の定期検査など</h2>
+
+  <h3>心臓カテーテル検査</h3>
+  <ul>
+    <li>生検の予定：術後2週間は週1回、3ヶ月まで2週に1回、半年まで1ヶ月に1回。つまり 1, 2, 4, 6, 8, 10, 12, 16, 20, 24週 で行う。</li>
+    <li>その次は半年後の1年目に行い、以降1年ごと。術後5年以降は2年ごと。</li>
+    <li>術後8週および1年ごとの検査では Full study（生検、右心カテ、CAG、IVUSなど。術後4年および6年以降はCAGまででよい）。</li>
+    <li>術後24週までの検査では右心カテ、生検のみ行う。</li>
+  </ul>
+
+  <h3>ECG</h3>
+  <ul>
+    <li>術後ICU帰室時、ICU退室前、1ヶ月、2ヶ月</li>
+    <li>以後、検査入院ごと</li>
+  </ul>
+
+  <h3>心エコー</h3>
+  <ul>
+    <li>術後1週間目（ICUでエコー）、退院前（エコー室に出診）</li>
+    <li>術後2〜3ヶ月、6ヶ月、1年</li>
+    <li>その後、1年ごと</li>
+  </ul>
+
+  <h3>CMV</h3>
+  <ul>
+    <li>CMV抗原（C7-HRP）</li>
+    <li>術後1ヶ月までは毎週。以後はカテーテル検査のタイミングにあわせて。</li>
+    <li>発熱・下痢などの症状を認める場合は、その都度測定する。</li>
+  </ul>
+
+  <h3>骨密度測定</h3>
+  <ul>
+    <li>腰椎および大腿骨の骨密度測定、T-scoreで評価。</li>
+    <li>退院前、以後1年ごと</li>
+  </ul>
+
+  <h3>悪性腫瘍スクリーニング</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>部位</th><th>検診方法</th><th class="c">対象年齢</th></tr></thead>
+      <tbody>
+        <tr><td>胃</td><td>胃カメラ</td><td class="c">40歳以上</td></tr>
+        <tr><td>大腸</td><td>便潜血</td><td class="c">40歳以上 ※</td></tr>
+        <tr><td>肺</td><td>胸部レントゲン</td><td class="c">40歳以上 ※</td></tr>
+        <tr><td>乳房</td><td>マンモグラフィーもしくはエコー</td><td class="c">40歳以上</td></tr>
+        <tr><td>子宮頚部</td><td>細胞診</td><td class="c">20歳以上</td></tr>
+        <tr><td>前立腺</td><td>血液検査（PSA）</td><td class="c">40歳以上 ※</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:#555;">※ 心臓カテーテル検査入院や阪大受診の際に実施を考慮</p>
+  <ul>
+    <li>皮膚科：定期受診の必要はないが、病変あればすみやかな受診を指示する。</li>
+    <li>PTLD：
+      <ul>
+        <li>LDH値</li>
+        <li>SIL-2R 12ヶ月ごと</li>
+        <li>EB-DNA 12ヶ月ごと</li>
+      </ul>
+    </li>
+  </ul>
+
+  <!-- ==================== 5. 慢性期の諸問題 ==================== -->
+  <h2 id="chronic"><span class="num">5</span>術後慢性期の諸問題</h2>
+
+  <h3 id="chronic-adjust">個々の症例における免疫抑制薬の調節</h3>
+  <ol>
+    <li><strong>腎機能障害</strong>
+      <ul>
+        <li>①シクロスポリンからタクロリムスへの変更、②エベロリムスを導入してCNIの減量、③エベロリムスを導入してCNIを中止、を考慮する。</li>
+        <li>腎機能障害が高度になると、CNIを減量・中止しても腎機能は改善しなくなるため、<em>早期の対処が必要</em>。</li>
+      </ul>
+    </li>
+    <li><strong>糖尿病</strong>
+      <ul>
+        <li>術前非糖尿病合併例かつタクロリムス使用例で、移植後糖尿病を発症した場合、タクロリムスからシクロスポリンへの変更を考慮する。</li>
+        <li>術後1年以降のステロイド減量中止を考慮する。</li>
+      </ul>
+    </li>
+    <li><strong>高脂血症</strong>
+      <ul><li>スタチンプロトコールでコントロール不良な場合、①シクロスポリンからタクロリムスへの変更、②エベロリムスの使用中止、を考慮する。</li></ul>
+    </li>
+    <li><strong>移植後冠動脈病変</strong>
+      <ul>
+        <li>適応症例にはPCI/(CABG)を検討。</li>
+        <li>CAG上の有意狭窄、瀰漫性の狭小化、IVUS上 &gt;0.5 mm の内膜肥厚症例においては、エベロリムスの導入を考慮する。</li>
+      </ul>
+    </li>
+    <li><strong>悪性腫瘍</strong>
+      <ul><li>エベロリムスの導入、免疫抑制薬の減量を考慮する。</li></ul>
+    </li>
+    <li><strong>可逆性後頭葉白質脳症（PRES）、可逆性脳血管攣縮症候群（RCVS）</strong>
+      <ul><li>CNIの変更（タクロリムス⇔シクロスポリン）を行い、それでも改善しない、あるいは再発する場合にはCNI中止を考慮する。</li></ul>
+    </li>
+  </ol>
+
+  <h3 id="tac-csa">タクロリムスからシクロスポリンへの変更</h3>
+  <p><strong>適応：</strong> 拒絶反応の遷延、移植後糖尿病、PRESなど</p>
+  <p><strong>方法：</strong></p>
+  <ul>
+    <li>タクロリムスを中止すると同時に、タクロリムス（プログラフ）投与量の<strong>25倍量</strong>のシクロスポリン（ネオーラル）を投与開始する。</li>
+    <li>ネオーラルの目標トラフ濃度はプログラフの<strong>13倍</strong>。</li>
+  </ul>
+  <p>シクロスポリンからタクロリムスへの変更 → <a class="xref" href="#app-csa-tac">付録参照</a></p>
+
+  <h3 id="mtor">mTOR阻害薬：エベロリムス（サーティカン）の導入・CNIの減量</h3>
+  <p><strong>適応：</strong></p>
+  <ul>
+    <li>移植心冠動脈病変（CAV）のハイリスク症例（高齢者ドナー、冠動脈病変を有するドナー）</li>
+    <li>CNIによる腎機能障害の症例（高度の腎機能障害例ではCNIを減量しても腎機能は改善しない）</li>
+    <li>拒絶反応のハイリスク症例（高PRA症例、反復もしくはステロイド不応の拒絶反応）</li>
+    <li>EBウイルス感染、CMV感染</li>
+    <li>悪性腫瘍、またはその既往</li>
+  </ul>
+  <p><strong>非適応（禁忌）：</strong></p>
+  <ul>
+    <li><em>コントロール不良の高脂血症</em></li>
+    <li><em>蛋白尿 &gt;800 mg/day</em></li>
+    <li><em>創傷治癒不全が問題となる症例（術後の創傷未治癒、他疾患のメジャー手術を要する症例など）</em></li>
+  </ul>
+  <p><strong>副作用：</strong></p>
+  <ul>
+    <li>脂質異常症</li>
+    <li>創傷治癒障害、リンパ漏</li>
+    <li>胸水・心嚢液貯留</li>
+    <li>浮腫（リンパ浮腫）</li>
+    <li>蛋白尿</li>
+    <li>皮膚・粘膜障害（にきび、口内炎）：難治性・再発性の口内炎に対しては半夏瀉心湯含嗽、アズノールうがい液、アズノールST錠口腔用を考慮する。</li>
+    <li>間質性肺炎</li>
+  </ul>
+  <p><strong>方法：</strong></p>
+  <ul>
+    <li>エベロリムス <strong>1.5 mg/day（0.75 mg 2錠分2）</strong> より開始。</li>
+    <li>同時にMMFを <strong>500 mg/day（250 mg 2錠分2）</strong> に減量。</li>
+    <li>1週間後に血中濃度（トラフ）を測定。<em>3 ng/mL を超えたらMMF中止</em>。</li>
+    <li>目標血中濃度（トラフ）<strong>3〜8 ng/mL</strong></li>
+    <li>投与量変更後、トラフ値が安定するまで4〜5日以上かかる。</li>
+    <li>目標濃度に達したら、CNIの目標血中濃度を25〜30%減量する。維持期（移植後6カ月以降）ではシクロスポリン 50〜100 ng/mL、タクロリムス 4〜6 ng/mL。</li>
+  </ul>
+  <p><strong>タクロリムス（Tac）＋エベロリムス（EVL）の目標血中濃度の目安：</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>時期</th><th>目標</th></tr></thead>
+      <tbody>
+        <tr><td>〜術後1年</td><td>Tac（4〜6 ng/mL）＋ EVL（4〜6 ng/mL）≈ 合計10前後</td></tr>
+        <tr><td>術後1〜3年</td><td>Tac ＋ EVL で 8〜10</td></tr>
+        <tr><td>術後3年〜</td><td>Tac ＋ EVL で 8前後</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>mTOR阻害薬：エベロリムス（サーティカン）の導入・CNIの中止</h4>
+  <p><strong>適応：</strong></p>
+  <ul>
+    <li>CNIを中止する必要がある症例。</li>
+    <li>心移植後1年以降の患者（移植直後にCNIを中止し重篤な拒絶反応が起こった症例が報告されている）。</li>
+  </ul>
+  <p><strong>方法：</strong> CNI減量のプロトコールと同じ。目標血中濃度はCNI減量プロトコールより高い設定を考慮する。</p>
+
+  <h3 id="steroid-taper">ステロイドの漸減・中止</h3>
+  <p><strong>対象：</strong> ①過去半年以上追加治療を要する拒絶がない、②ステロイド以外の免疫抑制薬2種類以上（CNI＋mTOR阻害薬など）でコントロール可能と見込まれる症例。</p>
+  <p><strong>方法：</strong></p>
+  <ul>
+    <li>血液検査（DHEA-S）等にて内因性副腎機能が保たれていることを確認する。</li>
+    <li>副腎機能が十分保たれており（DHEA-Sが基準値内など）、拒絶反応なければ、<strong>5 mg → 2.5 mg → 中止</strong>としてよい。</li>
+    <li>定期検査入院前（1ヶ月程度）に減量もしくは中止し、カテーテル検査にて拒絶反応の有無を確認することが望ましい。</li>
+  </ul>
+
+  <h3 id="chronic-infection">移植後感染症の治療・予防</h3>
+  <h4>CMV再燃（C7-HRP≧10）時の治療</h4>
+  <ol>
+    <li><strong>無症状〜軽症</strong>
+      <ul>
+        <li>Valganciclovir（バリキサ）投与 × 3ヶ月（腎機能によって投与量を調節）</li>
+        <li>未導入例では、並行してエベロリムスの導入を行う。</li>
+      </ul>
+    </li>
+    <li><strong>中等症以上</strong>
+      <ul>
+        <li>Ganciclovir（デノシン）div 14日間（腎機能により調節）</li>
+        <li>CMVが陰性化した時点でValganciclovir（バリキサ）に変更する。</li>
+      </ul>
+    </li>
+    <li><strong>中等症以上でバリキサ/デノシンで効果不十分な場合</strong>
+      <ul><li>ホスカルネット（ホスカビル）投与を行う。ICTへコンサルト。</li></ul>
+    </li>
+  </ol>
+  <h4>心移植後患者の感冒</h4>
+  <ul>
+    <li>必要に応じて総合感冒薬、抗菌薬、抗ウイルス薬の投与を行う。</li>
+    <li><em>マクロライド系抗菌薬はCNIとの相互作用があるため要注意。</em></li>
+  </ul>
+  <p>トキソプラズマ感染症の治療 → <a class="xref" href="#app-toxo">付録参照</a></p>
+
+  <h3 id="vaccine">移植患者のワクチン接種</h3>
+  <ul>
+    <li><strong>不活化ワクチン</strong>（インフルエンザ、肺炎球菌、B型肝炎など）は接種可能。特にインフルエンザについては流行前にワクチン接種しておくことが望ましい。</li>
+    <li><strong>生ワクチン</strong>（ムンプス、風疹、麻疹、ポリオ、BCG）の接種は<em>原則禁忌</em>。このため移植待機中の生ワクチン接種を行っておくこと。</li>
+    <li>移植後に生ワクチン接種を行う必要性が高い症例においては、①CD4細胞数 ≧500/mm³、②PHAリンパ球幼若化反応 SI≧101.6、③血清IgG ≧300 mg/dL の条件を参考に接種の可否を検討する。</li>
+  </ul>
+  <h4>同居者の感染症・ワクチン接種</h4>
+  <ul>
+    <li>同居者が伝染性の感染症に罹患した場合、隔離が必要。インフルエンザ患者との接触があった場合はタミフルの予防投与を行う。</li>
+    <li>同居者が溶連菌感染症に罹患した場合、抗菌薬の予防内服を行う。サワシリン 3錠分3 14日間。</li>
+    <li>同居者が生ワクチン接種を受けた場合も、注意が必要（ロタウイルス、ポリオの経口生ワクチンは便や体液にウイルス排泄される）。</li>
+  </ul>
+
+  <h3 id="other-surgery">心移植後患者の他臓器手術時の投薬調整</h3>
+  <p><strong>術前：</strong></p>
+  <ul>
+    <li>手術1週間前にバイアスピリンを中止。</li>
+    <li>エベロリムス使用症例で創傷治癒不全が問題となる可能性がある患者では、手術1週間前に中止しMMFに変更する。</li>
+    <li>前日夜まで通常通り内服。術当日朝は、免疫抑制薬およびそれ以外の不可欠な薬のみ少量の水で内服。</li>
+  </ul>
+  <p><strong>術中：</strong></p>
+  <ul>
+    <li>必要に応じてステロイドカバー。</li>
+    <li>12時間以上に及ぶ長時間手術でなければ術中の免疫抑制薬投与は不要。</li>
+  </ul>
+  <p><strong>術後（消化管以外）：</strong></p>
+  <ul>
+    <li>術当日夕より、経管投与にて免疫抑制薬を通常通り投与。</li>
+    <li>術後止血を確認後、バイアスピリンを再開。</li>
+    <li>術後14〜21日後、または創傷治癒後、サーティカン再開。</li>
+  </ul>
+  <p><strong>術後（消化管手術）：</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>薬剤</th><th>代替方法</th></tr></thead>
+      <tbody>
+        <tr><td>ステロイド</td><td>プレドニン注（内服量と1:1で静注。MMF中止時は1.5倍量に増量）</td></tr>
+        <tr><td>MMF</td><td>注射薬なし。中止し、ステロイドを増量するかイムラン注を使用</td></tr>
+        <tr><td>シクロスポリン</td><td>サンディミュン注（内服1日量と同量を24時間かけて持続静注）</td></tr>
+        <tr><td>タクロリムス</td><td>プログラフ注（内服1日量の1/4量を24時間かけて持続静注）</td></tr>
+        <tr><td>サーティカン</td><td>術後14〜21日後、または創傷治癒後、再開</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="pregnancy">心移植後患者の妊娠・出産</h3>
+  <p><strong>必要条件（女性）：</strong></p>
+  <ul>
+    <li>心移植後1年以上経過している</li>
+    <li>禁忌薬を服用していない</li>
+    <li>免疫抑制薬投与量・血中濃度が安定している</li>
+    <li>心機能正常・著明な冠動脈病変がない</li>
+    <li>腎機能正常</li>
+    <li>血圧・血糖値正常</li>
+  </ul>
+  <p><strong>必要条件（男性）：</strong> 禁忌薬を服用していない</p>
+  <p><strong>内服薬の注意：</strong></p>
+  <p>当院での挙児希望女性に対しては、<strong>PSL＋CNI＋アザチオプリン</strong>での管理とし、出産後元の免疫抑制薬に戻している。</p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>薬剤</th><th>男性</th><th>女性</th></tr></thead>
+      <tbody>
+        <tr><td>MMF</td><td>リスクの報告なし</td><td>動物実験で催奇性あり。中止後 <strong>6週間</strong> 避妊が必要</td></tr>
+        <tr><td>シクロスポリン・タクロリムス</td><td>—</td><td>体重増加・循環血液量増加により血中濃度低下しやすい</td></tr>
+        <tr><td>mTOR阻害薬</td><td>ラットで精子運動能・数・テストステロン濃度減少（休薬で回復傾向）</td><td>動物実験で胚・胎児毒性あり</td></tr>
+        <tr><td>アザチオプリン（AZA）</td><td>禁忌ではないが先天奇形・早産リスクを説明</td><td>禁忌ではないが先天奇形・早産リスクを説明</td></tr>
+        <tr><td>デノシン・バリキサ</td><td>男女とも投薬中止後 <strong>90日間</strong> 避妊が必要</td><td>同左</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><strong>その他の注意（女性）：</strong></p>
+  <ul>
+    <li>ACE阻害薬・ARB：<em>妊娠中後期で禁忌</em></li>
+    <li>スタチン：<em>妊婦禁忌</em></li>
+    <li>ビスフォスフォネート：<em>妊婦禁忌</em></li>
+    <li>Ca製剤、Vit.D製剤：移植後の投与量であれば投与可</li>
+    <li>アスピリン：投与可</li>
+  </ul>
+  <p><strong>分娩：</strong> 通常は経膣分娩が可能。帝王切開の適応は通常のハイリスク出産と同様の産科的基準で決定。</p>
+  <p><strong>出生児のリスク：</strong></p>
+  <ul>
+    <li>早産（37週未満）や低出生体重児（2500 g未満）の可能性が通常の3倍</li>
+    <li>先天性異常の確率は通常と同様</li>
+  </ul>
+
+  <!-- ==================== 6. 付録 ==================== -->
+  <h2 id="appendix"><span class="num">6</span>付録</h2>
+
+  <h3 id="app-ivig">IVIg ＋ シクロホスファミドのプロトコール</h3>
+  <ul>
+    <li>IVIg 2 g/kg
+      <ul>
+        <li>前投薬：カロナール 600 mg、レスタミン 30〜50 mg 経口投与</li>
+        <li>ヴェノグロブリンIHなど 500 mg/kg を8時間以上かけて投与。4日間続ける。</li>
+      </ul>
+    </li>
+    <li>IVIg終了7日後に、シクロホスファミド（エンドキサン）を投与する。出血性膀胱炎予防にメスナの投与が必要。
+      <ul>
+        <li>前投薬：メスナ注 500 mg（5% ブドウ糖50 mL溶解）、シクロホスファミド投与1時間前にレスタミン 50 mg、ノバミン 25 mg 経口投与</li>
+        <li>シクロホスファミド（エンドキサン）1 g/m² を 5% ブドウ糖250 mL に溶解し4時間以上かけて投与</li>
+        <li>投与1時間後にもレスタミン 50 mg、ノバミン 25 mg 経口投与</li>
+        <li>以上を3週間おきに繰り返す</li>
+      </ul>
+    </li>
+    <li>シクロホスファミド投与後、白血球減少が底打ちするまで毎日血算を測定。底打ちしたら週2回の測定。</li>
+    <li>抗HLA抗体（T細胞、B細胞）を治療開始前、および開始後毎週測定する。</li>
+    <li>移植後はシクロホスファミド（エンドキサン）1 g/m² 投与を 1回/月 で4クール行う。4クール終了後、白血球数 &gt;5000/mm³ 以上でMMF開始。</li>
+  </ul>
+
+  <h3 id="app-atg">ATGを用いた免疫抑制導入療法のプロトコール（サイモグロブリン）</h3>
+  <ul>
+    <li>患者にウサギ血清製剤の投与歴がないことを確認。</li>
+    <li>使用開始前に試験投与を行う（サイモグロブリン 2.5 mg を100 mLの生食で希釈、1時間以上かけて点滴静注）。</li>
+    <li>ATG（サイモグロブリン）<strong>1.5〜2.5 mg/kg/day div. × 5日間</strong></li>
+    <li>1バイアルあたり50 mLの生食か 5% ブドウ糖液に溶解し、6時間以上かけて div.</li>
+    <li>治療中はCMV予防のためガンシクロビル（デノシン）3〜5 mg/kg/day 投与。</li>
+    <li>血小板または白血球減少がみられた場合は減量もしくは投与中止を考慮する。</li>
+  </ul>
+  <h3 id="app-atg-lympho">ATGを用いた免疫抑制導入療法のプロトコール（リンフォグロブリン）</h3>
+  <ul>
+    <li>患者にリンフォグロブリン使用歴がないことを確認。</li>
+    <li>試験投与：ATG（リンフォグロブリン）1 mg を100 mLの生食に溶解、1時間以上かけて投与。</li>
+    <li>ATG（リンフォグロブリン）<strong>10〜15 mg/kg/day div. × 5日間</strong></li>
+    <li>250〜500 mLの生食に溶解し、4時間以上かけて div.</li>
+    <li>治療中CMV予防にガンシクロビル 3〜5 mg/kg/day 投与。</li>
+  </ul>
+
+  <h3 id="app-okt3">OKT3を用いた免疫抑制導入療法のプロトコール</h3>
+  <p><strong>前投薬（day 1〜3、OKT-3投与1時間前）：</strong></p>
+  <ul>
+    <li>アセトアミノフェン（カロナール）600 mg 経口または胃管投与</li>
+    <li>ラニチジン（ザンタック）150 mg 経口または 50 mg iv</li>
+    <li>塩酸ジフェンヒドラミン（レスタミン）50 mg 経口または iv</li>
+    <li>メチルプレドニゾロン（ソル・メドロール 500 mg）iv</li>
+  </ul>
+  <p><strong>前投薬（day4以降、OKT-3投与1時間前）：</strong></p>
+  <ul>
+    <li>アセトアミノフェン（カロナール）600 mg 経口または胃管投与</li>
+    <li>ラニチジン（ザンタック）150 mg 経口または 50 mg iv</li>
+    <li>塩酸ジフェンヒドラミン（レスタミン）50 mg 経口または iv</li>
+  </ul>
+  <p><strong>OKT-3：</strong></p>
+  <ul>
+    <li>体重30 kg未満：2.5 mg/day</li>
+    <li>体重30 kg以上：5 mg/day</li>
+    <li>100 mLの生食に溶解して1時間で div. × 10〜14日間</li>
+    <li>治療中はCMV予防のためガンシクロビル（デノシン）3〜5 mg/kg/day 投与。</li>
+  </ul>
+
+  <h3 id="app-cmv">従来のCMV予防法（参考）</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>ドナー/レシピエントCMV</th><th>初期治療</th><th>維持治療</th></tr></thead>
+      <tbody>
+        <tr><td>ドナー陽性/レシピエント陰性</td><td>デノシン 3〜5 mg/kg/day iv × 14日間</td><td>デノシン 450 mg/day 分3 × 6ヵ月間</td></tr>
+        <tr><td>ドナー陽性/レシピエント陽性</td><td>デノシン 3 mg/kg/day iv × 3日間</td><td>デノシン 450 mg/day 分3 × 6ヵ月間</td></tr>
+        <tr><td>ドナー陰性/レシピエント陽性</td><td>デノシン 3 mg/kg/day iv × 3日間</td><td>デノシン 450 mg/day 分3 × 6ヵ月間</td></tr>
+        <tr><td>ドナー陰性/レシピエント陰性</td><td>—</td><td>デノシン 450 mg/day 分3 × 3ヵ月間</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:13px;color:#555;">※ ドナーCMVが不明のときは陽性として扱う。</p>
+
+  <h3 id="app-nystatin">従来の消化管真菌症予防（ナイスタチン）</h3>
+  <ul>
+    <li>Nystatin（ナイスタチン）10錠粉砕を CMC液50 mL に溶解、1回5 mL 毎食後に含嗽後内服（グチュグチュゴックン）。</li>
+  </ul>
+
+  <h3 id="app-csa-tac">シクロスポリンからタクロリムスへの変更</h3>
+  <p><strong>適応：</strong> 拒絶反応の遷延、腎機能障害、高脂血症、美容上の問題</p>
+  <p><strong>方法：</strong></p>
+  <ul>
+    <li>シクロスポリンを中止すると同時に、シクロスポリン（ネオーラル）投与量の<strong>1/25量</strong>のタクロリムス（プログラフ）を投与開始する。<br>例：ネオーラル 100 mg × 2回/day → プログラフ 4 mg × 2回/day</li>
+    <li>プログラフの目標トラフ濃度はネオーラルの<strong>1/13</strong>。<br>例：ネオーラルの目標トラフ濃度 250 ng/mL → プログラフの目標トラフ濃度 15 ng/mL</li>
+  </ul>
+
+  <h3 id="app-toxo">トキソプラズマ感染症の治療</h3>
+  <ul>
+    <li>ピリミタミン（ファンシダール）50 mg/day 21日間、その後 50 mg × 3回/週（投与開始〜3ヶ月）</li>
+    <li>ST合剤（バクタ）1錠 × 2回/day 21日間、その後 1錠 × 3回/週（投与開始〜3ヶ月）</li>
+    <li>ホリナート（ロイコボリン）10 mg/day 21日間、その後 10 mg × 3回/週（投与開始から3ヶ月）</li>
+    <li>腎機能によって投与量を調節。</li>
+    <li>サルファ剤アレルギー、肝機能障害、血液疾患の発症に注意。</li>
+  </ul>
+
+  <!-- ==================== 7. 換算表 ==================== -->
+  <h2 id="conversion"><span class="num">7</span>免疫抑制薬血中濃度換算表（新旧検査機器対応）</h2>
+  <div class="note">検査機器変更に伴い、血中濃度の値が変わっています。旧機器の目標値を新機器の値に換算する際に使用してください。</div>
+
+  <h3 id="conv-formula">換算式</h3>
+  <p><strong>Y（新）＝ a（傾き）× X（旧）＋ b（切片）</strong></p>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>薬剤</th><th class="c">相関係数</th><th class="c">傾き (a)</th><th class="c">切片 (b)</th></tr></thead>
+      <tbody>
+        <tr><td>タクロリムス</td><td class="c">0.989</td><td class="c">0.964</td><td class="c">−0.029</td></tr>
+        <tr><td>シクロスポリンA</td><td class="c">0.997</td><td class="c">1.124</td><td class="c">2.23</td></tr>
+        <tr><td>エベロリムス</td><td class="c">0.977</td><td class="c">1.519</td><td class="c">1.498</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="conv-tac">タクロリムス 旧→新 換算表</h3>
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr class="group-row"><th scope="row" class="rowlabel c">旧</th><td class="c">3</td><td class="c">4</td><td class="c">5</td><td class="c">6</td><td class="c">7</td><td class="c">8</td><td class="c">9</td><td class="c">10</td><td class="c">11</td><td class="c">12</td><td class="c">13</td><td class="c">14</td><td class="c">15</td></tr>
+        <tr><th scope="row" class="rowlabel c">新</th><td class="c">2.9</td><td class="c">3.8</td><td class="c">4.8</td><td class="c">5.8</td><td class="c">6.7</td><td class="c">7.7</td><td class="c">8.6</td><td class="c">9.6</td><td class="c">10.6</td><td class="c">11.5</td><td class="c">12.5</td><td class="c">13.5</td><td class="c">14.4</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr class="group-row"><th scope="row" class="rowlabel c">旧</th><td class="c">16</td><td class="c">17</td><td class="c">18</td><td class="c">19</td><td class="c">20</td><td class="c">21</td><td class="c">22</td><td class="c">23</td><td class="c">24</td><td class="c">25</td></tr>
+        <tr><th scope="row" class="rowlabel c">新</th><td class="c">15.4</td><td class="c">16.4</td><td class="c">17.3</td><td class="c">18.3</td><td class="c">19.3</td><td class="c">20.2</td><td class="c">21.2</td><td class="c">22.1</td><td class="c">23.1</td><td class="c">24.1</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="conv-csa">シクロスポリン 旧→新 換算表</h3>
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr class="group-row"><th scope="row" class="rowlabel c">旧</th><td class="c">30</td><td class="c">40</td><td class="c">50</td><td class="c">60</td><td class="c">70</td><td class="c">80</td><td class="c">90</td><td class="c">100</td><td class="c">110</td><td class="c">120</td><td class="c">130</td><td class="c">140</td><td class="c">150</td></tr>
+        <tr><th scope="row" class="rowlabel c">新</th><td class="c">36.0</td><td class="c">47.2</td><td class="c">58.4</td><td class="c">69.7</td><td class="c">80.9</td><td class="c">92.2</td><td class="c">103.4</td><td class="c">114.6</td><td class="c">125.9</td><td class="c">137.1</td><td class="c">148.4</td><td class="c">159.6</td><td class="c">170.8</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr class="group-row"><th scope="row" class="rowlabel c">旧</th><td class="c">160</td><td class="c">170</td><td class="c">180</td><td class="c">190</td><td class="c">200</td><td class="c">210</td><td class="c">220</td><td class="c">230</td><td class="c">240</td><td class="c">250</td></tr>
+        <tr><th scope="row" class="rowlabel c">新</th><td class="c">182.1</td><td class="c">193.3</td><td class="c">204.6</td><td class="c">215.8</td><td class="c">227.0</td><td class="c">238.3</td><td class="c">249.5</td><td class="c">260.8</td><td class="c">272.0</td><td class="c">283.2</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 id="conv-evl">エベロリムス 旧→新 換算表</h3>
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr class="group-row"><th scope="row" class="rowlabel c">旧</th><td class="c">3</td><td class="c">4</td><td class="c">5</td><td class="c">6</td><td class="c">7</td><td class="c">8</td><td class="c">9</td><td class="c">10</td><td class="c">11</td><td class="c">12</td><td class="c">13</td><td class="c">14</td><td class="c">15</td></tr>
+        <tr><th scope="row" class="rowlabel c">新</th><td class="c">6.1</td><td class="c">7.6</td><td class="c">9.1</td><td class="c">10.6</td><td class="c">12.1</td><td class="c">13.7</td><td class="c">15.2</td><td class="c">16.7</td><td class="c">18.2</td><td class="c">19.7</td><td class="c">21.2</td><td class="c">22.8</td><td class="c">24.3</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr class="group-row"><th scope="row" class="rowlabel c">旧</th><td class="c">16</td><td class="c">17</td><td class="c">18</td><td class="c">19</td><td class="c">20</td><td class="c">21</td><td class="c">22</td><td class="c">23</td><td class="c">24</td><td class="c">25</td></tr>
+        <tr><th scope="row" class="rowlabel c">新</th><td class="c">25.8</td><td class="c">27.3</td><td class="c">28.8</td><td class="c">30.4</td><td class="c">31.9</td><td class="c">33.4</td><td class="c">34.9</td><td class="c">36.4</td><td class="c">38.0</td><td class="c">39.5</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+  <p class="updated">最終改訂：2020年12月　塚本泰正 / 久保田香</p>
+  <p style="font-size:12px;color:#999;margin-top:20px;">※ 本ページは院内マニュアルの電子版です。臨床判断は必ず原本・最新の指示・主治医の判断に基づいて行ってください。</p>
+
+</main>
+
+<button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="トップへ">↑</button>
+
+<script>
+  // ===== SEARCH =====
+  let matches = [], matchIdx = 0;
+  const searchInput = document.getElementById('search-input');
+  const searchCount = document.getElementById('search-count');
+  const contentRoot = document.getElementById('main');
+
+  searchInput.addEventListener('input', doSearch);
+  searchInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') moveMatch(e.shiftKey ? -1 : 1);
+    if (e.key === 'Escape') clearSearch();
+  });
+
+  function doSearch() {
+    const q = searchInput.value.trim();
+    clearHighlights();
+    matches = []; matchIdx = 0;
+    if (!q) { searchCount.textContent = ''; return; }
+    highlight(contentRoot, q);
+    matches = Array.from(contentRoot.querySelectorAll('mark.search-hl'));
+    searchCount.textContent = matches.length ? '1/' + matches.length : '0件';
+    if (matches.length) { matchIdx = 0; setCurrent(0); }
+  }
+
+  function highlight(node, q) {
+    if (node.nodeType === 3) {
+      const escaped = q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+      const re = new RegExp(escaped, 'gi');
+      if (!re.test(node.textContent)) return;
+      const frag = document.createDocumentFragment();
+      const parts = node.textContent.split(new RegExp('(' + escaped + ')', 'gi'));
+      parts.forEach(p => {
+        if (new RegExp('^' + escaped + '$', 'i').test(p)) {
+          const mark = document.createElement('mark');
+          mark.className = 'search-hl';
+          mark.textContent = p;
+          frag.appendChild(mark);
+        } else {
+          frag.appendChild(document.createTextNode(p));
+        }
+      });
+      node.parentNode.replaceChild(frag, node);
+    } else if (node.nodeType === 1 && !['SCRIPT','STYLE','INPUT'].includes(node.tagName)) {
+      Array.from(node.childNodes).forEach(c => highlight(c, q));
+    }
+  }
+
+  function clearHighlights() {
+    contentRoot.querySelectorAll('mark.search-hl').forEach(m => {
+      m.parentNode.replaceChild(document.createTextNode(m.textContent), m);
+    });
+    contentRoot.normalize();
+  }
+
+  function setCurrent(i) {
+    matches.forEach(m => m.classList.remove('current'));
+    if (!matches.length) return;
+    matches[i].classList.add('current');
+    matches[i].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    searchCount.textContent = (i+1) + '/' + matches.length;
+  }
+
+  function moveMatch(dir) {
+    if (!matches.length) return;
+    matchIdx = (matchIdx + dir + matches.length) % matches.length;
+    setCurrent(matchIdx);
+  }
+
+  function clearSearch() {
+    searchInput.value = '';
+    clearHighlights();
+    matches = []; matchIdx = 0;
+    searchCount.textContent = '';
+  }
+
+  // ===== SIDEBAR (unified mobile drawer + desktop collapse) =====
+  const menuBtn = document.getElementById('menu-toggle');
+  const sidebarEl = document.getElementById('sidebar');
+  const mainEl = document.getElementById('main');
+  const overlayEl = document.getElementById('overlay');
+  const desktopMQ = window.matchMedia('(min-width: 769px)');
+  let desktopCollapsed = false;
+
+  function setExpanded(v) { menuBtn.setAttribute('aria-expanded', String(v)); }
+
+  function toggleSidebar() {
+    if (desktopMQ.matches) {
+      desktopCollapsed = !desktopCollapsed;
+      sidebarEl.classList.toggle('hidden', desktopCollapsed);
+      mainEl.classList.toggle('full', desktopCollapsed);
+      setExpanded(!desktopCollapsed);
+    } else {
+      const open = sidebarEl.classList.toggle('open');
+      overlayEl.classList.toggle('visible', open);
+      setExpanded(open);
+      if (open) { const first = sidebarEl.querySelector('a'); if (first) first.focus(); }
+    }
+  }
+
+  function closeSidebar() {
+    sidebarEl.classList.remove('open');
+    overlayEl.classList.remove('visible');
+    if (!desktopMQ.matches) setExpanded(false);
+  }
+
+  // Reset state when crossing the desktop/mobile breakpoint
+  desktopMQ.addEventListener('change', e => {
+    if (e.matches) {
+      sidebarEl.classList.remove('open');
+      overlayEl.classList.remove('visible');
+      sidebarEl.classList.toggle('hidden', desktopCollapsed);
+      mainEl.classList.toggle('full', desktopCollapsed);
+      setExpanded(!desktopCollapsed);
+    } else {
+      sidebarEl.classList.remove('hidden');
+      mainEl.classList.remove('full');
+      setExpanded(false);
+    }
+  });
+
+  // Escape closes the mobile drawer
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && sidebarEl.classList.contains('open')) {
+      closeSidebar();
+      menuBtn.focus();
+    }
+  });
+
+  // Initial aria state
+  setExpanded(desktopMQ.matches ? !desktopCollapsed : false);
+
+  // Active link tracking (scroll-spy)
+  const headings = document.querySelectorAll('h2[id], h3[id]');
+  const links = document.querySelectorAll('#sidebar a[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector('#sidebar a[href="#' + e.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+  headings.forEach(h => observer.observe(h));
+
+  // Back to top button
+  const backTop = document.getElementById('back-top');
+  window.addEventListener('scroll', () => {
+    backTop.style.display = window.scrollY > 300 ? 'block' : 'none';
+  });
+
+  // Close sidebar on link click (mobile)
+  links.forEach(l => l.addEventListener('click', () => {
+    if (window.innerWidth < 769) closeSidebar();
+  }));
+</script>
+</body>
+</html>
